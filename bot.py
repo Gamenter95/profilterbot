@@ -266,6 +266,22 @@ async def send_file(_, cq):
     await asyncio.sleep(300)
     await sent.delete()
 
+from flask import Flask
+import threading
+
+# Create a tiny Flask web server
+app_web = Flask("")
+
+@app_web.route("/")
+def home():
+    return "Bot is alive"
+
+# Run Flask in a separate thread
+def run_flask():
+    app_web.run(host="0.0.0.0", port=8080)
+
+threading.Thread(target=run_flask).start()
+
 # ---------- START ----------
 print("Bot started...")
 app.run()
