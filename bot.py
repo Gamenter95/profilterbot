@@ -283,5 +283,14 @@ def run_flask():
 threading.Thread(target=run_flask).start()
 
 # ---------- START ----------
-print("Bot started...")
-app.run()
+from pyrogram import Client
+import asyncio
+
+# After creating your Client instance
+async def start_bot():
+    await app.start()
+    print("Bot started and time synced!")
+    await app.idle()
+
+# Replace app.run() with asyncio run
+asyncio.run(start_bot())
