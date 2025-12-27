@@ -272,10 +272,6 @@ from flask import Flask
 from pyrogram import Client
 import os
 
-API_ID = int(os.getenv("API_ID"))
-API_HASH = os.getenv("API_HASH")
-BOT_TOKEN = os.getenv("BOT_TOKEN")
-
 # Flask ping route to keep instance alive
 app_web = Flask("")
 
