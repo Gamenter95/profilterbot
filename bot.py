@@ -266,11 +266,17 @@ async def send_file(_, cq):
     await asyncio.sleep(300)
     await sent.delete()
 
+import asyncio
 import threading
 from flask import Flask
 from pyrogram import Client
-import asyncio
+import os
 
+API_ID = int(os.getenv("API_ID"))
+API_HASH = os.getenv("API_HASH")
+BOT_TOKEN = os.getenv("BOT_TOKEN")
+
+# Flask ping route to keep instance alive
 app_web = Flask("")
 
 @app_web.route("/")
@@ -282,12 +288,12 @@ def run_flask():
 
 threading.Thread(target=run_flask).start()
 
-# Start Pyrogram bot asynchronously
-app = Client("bot", api_id=API_ID, api_hash=API_HASH, bot_token=BOT_TOKEN)
+# Pyrogram bot
+bot = Client("bot", api_id=API_ID, api_hash=API_HASH, bot_token=BOT_TOKEN)
 
 async def main():
-    await app.start()
-    print("Bot started")
-    await app.idle()
+    await bot.start()
+    print("Bot started!")
+    await bot.idle()
 
 asyncio.run(main())
