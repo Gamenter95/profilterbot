@@ -1,4 +1,4 @@
-# Use official Python image
+# Use slim Python image
 FROM python:3.10-slim
 
 # Set working directory
@@ -13,8 +13,3 @@ COPY . .
 
 # Run bot
 CMD ["python", "bot.py"]
-
-RUN apt-get update && apt-get install -y tzdata ntpdate \
-    && ntpdate pool.ntp.org
-
-ENV TZ=UTC
