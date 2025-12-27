@@ -11,10 +11,10 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy bot code
 COPY . .
 
-# Set environment variables placeholder (will be set on Koyeb)
-ENV API_ID=0
-ENV API_HASH=""
-ENV BOT_TOKEN=""
-
 # Run bot
 CMD ["python", "bot.py"]
+
+RUN apt-get update && apt-get install -y tzdata ntpdate \
+    && ntpdate pool.ntp.org
+
+ENV TZ=UTC
